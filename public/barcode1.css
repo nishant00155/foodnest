@@ -1,0 +1,38 @@
+/* The container for the scanner */
+#interactive-viewport {
+    position: relative;
+    width: 100%;
+    max-width: 640px; /* Standard camera resolution */
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Style both the video and the drawing canvas */
+#interactive-viewport video, 
+#interactive-viewport canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Crucial: Overlay the canvas exactly on top of the video */
+#interactive-viewport canvas.drawingBuffer {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+
+.scan-target {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 30%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.4); /* Darkens the outer area */
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 10;
+}

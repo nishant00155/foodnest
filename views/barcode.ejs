@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barcode Scanner</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #interactive-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      height: 480px;
+      margin: 20px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      background: #000;
+    }
+
+    #interactive-viewport video,
+    #interactive-viewport canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    #interactive-viewport canvas.drawingBuffer {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .scan-target {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: 30%;
+      border: 2px dashed rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      pointer-events: none;
+      z-index: 10;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { border-color: rgba(255,255,255,0.2); }
+      50% { border-color: rgba(255,255,255,0.9); }
+      100% { border-color: rgba(255,255,255,0.2); }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+
+    #result {
+      font-weight: bold;
+      color: #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <h1>📷 Barcode Scanner</h1>
+  <div id="interactive-viewport">
+    <div class="scan-target"></div>
+  </div>
+  <p>Detected Barcode: <span id="result">None</span></p>
+
+  <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2/dist/quagga.min.js"></script>
+  <script>
+    function isMobileDevice() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    const facingMode = isMobileDevice() ? "environment" : "user";
+
+    const config = {
+      inputStream: {
+        name: "Live",
+        type: "LiveStream",
+        target: document.querySelector('#interactive-viewport'),
+        constraints: {
+          facingMode: { ideal: facingMode }
+        }
+      },
+      decoder: {
+        readers: ["code_128_reader", "ean_reader", "upc_reader"]
+      },
+      locate: true
+    };
+
+    Quagga.init(config, function(err) {
+      if (err) {
+        console.error("Error initializing Quagga:", err);
+        return;
+      }
+      console.log("Initialization finished. Ready to start.");
+      Quagga.start();
+    });
+
+    Quagga.onDetected(function(data) {
+      const code = data.codeResult.code;
+      console.log("Barcode detected:", code);
+      document.getElementById('result').textContent = code;
+
+      // 🚀 Redirect after detection
+      setTimeout(() => {
+        window.location.href = "/home/tools/bar?barcode=" + encodeURIComponent(code);
+      }, 1500); // wait 1.5s so user sees the result
+    });
+  </script>
+</body>
+</html>

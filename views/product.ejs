@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= product.product_name %></title>
+</head>
+<body>
+  <h1><%= product.product_name %></h1>
+
+  <h2>Ingredients</h2>
+  <p><%= product.ingredients_text || "No ingredients listed" %></p>
+
+  <h2>AI Summary</h2>
+  <p><%= summary %></p>
+
+  <h2>Nutrition Facts</h2>
+  <ul>
+    <% if (product.nutriments) { %>
+      <% for (let key in product.nutriments) { %>
+        <li><%= key %>: <%= product.nutriments[key] %></li>
+      <% } %>
+    <% } else { %>
+      <li>No nutrition data available</li>
+    <% } %>
+  </ul>
+</body>
+</html>

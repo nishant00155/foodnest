@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Barcode Reader</title>
+  <script src="https://unpkg.com/@ericblade/quagga2/dist/quagga.min.js"></script>
+</head>
+<body>0
+  <h1>Upload an image to read barcode</h1>
+
+  <form action="/home/tools/barcode/read" method="POST" enctype="multipart/form-data">
+  <input type="file" name="barcodeImage" accept="image/*" capture="environment" required>
+  <button type="submit">Scan Barcode</button>
+</form>
+  <p id="result"></p>
+
+  <script>
+    document.getElementById("scanBtn").addEventListener("click", () => {
+      const fileInput = document.getElementById("barcodeImage");
+      if (!fileInput.files.length) {
+        alert("Please select an image first!");
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        Quagga.decodeSingle({
+          src: e.target.result,
+          numOfWorkers: 0,
+          inputStream: {
+            size: 800
+          },
+          decoder: {
+            readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader", "upc_e_reader"]
+          }
+        }, function(result) {
+          if (result && result.codeResult) {
+            const barcode = result.codeResult.code;
+            document.getElementById("result").innerText = "Detected barcode: " + barcode;
+
+            // Redirect to your Express route for product analysis
+            window.location.href = `/home/tools/bar/${barcode}`;
+          } else {
+            document.getElementById("result").innerText = "No barcode detected.";
+          }
+        });
+      };
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>

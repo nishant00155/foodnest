@@ -1,0 +1,82 @@
+body {
+  background-color: black;
+}
+.s1 {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("tool.jpg") center/cover no-repeat;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: 60%;
+  height: 60%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  color: white;
+  font-size: 28px;
+  transform: translateY(20%);
+}
+
+.i1 {
+  height: 20%;
+  width: 20%;
+  position: relative;
+  top: 0%;
+  left: 10%;
+}
+
+.i2 {
+  height: 40%;
+  width: 40%;
+  position: relative;
+  top: 10%;
+  left: 40%;
+}
+
+
+.search-btn{
+  margin-top:20px;
+  padding:12px 28px;
+  border:none;
+  border-radius:10px;
+  position: relative;
+  left: 64%;
+  top: -33px;
+
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+
+  border:1px solid rgba(255,255,255,0.3);
+  transition:0.3s;
+}
+
+.search-btn:hover{
+  background:rgba(255,255,255,0.3);
+  transform:scale(1.05);
+}
+
+.i1{
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.i1:hover{
+  transform:scale(1.1);
+}
+
+.bar{
+  text-decoration: none;
+  border: none;
+}

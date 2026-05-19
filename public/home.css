@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between; /* company name left, nav+button right */
+  align-items: center;
+  padding: 15px 40px;
+  position: fixed; /* stays at top */
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  color: white;
+
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Company name */
+.title h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Right side (nav + button) */
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* space between nav and button */
+}
+
+/* Navigation links */
+.assets {
+  display: flex;
+  gap: 20px;
+}
+
+.assets a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.assets a:hover {
+  text-decoration: underline; /* show underline on hover */
+  text-decoration-color: white; /* make underline white */
+}
+
+/* Get Started button */
+.start button {
+  background-color: transparent; /* transparent background */
+  color: white;
+  border: 2px solid white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.start button:hover {
+  text-decoration: underline; /* show underline on hover */
+  text-decoration-color: white;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.statment {
+  text-align: center;
+  margin: 40px 0;
+  position: absolute;
+  z-index: 2;
+  color: white;
+  top: 40%;
+  transform: translateY(-50%);
+  left: 2%;
+}
+.high1,
+.high2,
+.low {
+  margin: 0; /* remove default margins */
+  padding: 0; /* remove default padding */
+  text-align: left; /* ensure left alignment */
+}
+
+.high1 {
+  /* position: absolute;
+    top: 40%; */
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+}
+.high2 {
+  /* position: absolute;
+    top: 40%; */
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.low {
+  position: absolute;
+  font-size: 18px;
+  color: white;
+  margin: 10px 0 0;
+  top: 80%;
+}
+
+.second button{
+  all: unset;              /* removes all inherited/default styles */
+  cursor: pointer;         /* keep pointer cursor */
+  display: inline-block;   /* make it behave like a button again */
+  padding: 8px 16px;       /* add your own spacing */
+  border-radius: 4px;      /* optional rounded corners */
+  border: 2px solid #ffffff; /* custom border */
+  color: #000000;          /* text color */
+  background-color: white; /* transparent background */
+  font-size: 16px;
+  transition: all 0.3s;
+  position: absolute;
+  z-index: 3;
+  top: 85%;
+
+}
+
+
+.third button{
+  all: unset;              /* removes all inherited/default styles */
+  cursor: pointer;         /* keep pointer cursor */
+  display: inline-block;   /* make it behave like a button again */
+  padding: 8px 16px;       /* add your own spacing */
+  border-radius: 4px;      /* optional rounded corners */
+  border: 2px solid #ffffff; /* custom border */
+  color: #ffffff;          /* text color */
+  background-color: transparent; /* transparent background */
+  font-size: 16px;
+  transition: all 0.3s;
+  position: absolute;
+  z-index: 3;
+  top: 85%;
+    left: 150px;
+}
+
+.second button:hover {
+  text-decoration: underline; /* show underline on hover */
+  text-decoration-color: rgb(0, 0, 0);
+}
+
+.third button:hover {
+  text-decoration: underline; /* show underline on hover */
+  text-decoration-color: white;
+
+}
